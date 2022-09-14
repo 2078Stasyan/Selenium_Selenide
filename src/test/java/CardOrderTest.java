@@ -88,7 +88,7 @@ public class CardOrderTest {
     @Test
     void sendEmptyFieldName() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("++79098565222");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79098565222");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("[type=button]")).click();
         String expectedText = "Поле обязательно для заполнения";
@@ -113,10 +113,10 @@ public class CardOrderTest {
     void submittingFormWithTheWrongPhoneNumber() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Рычков Никита");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+7909856");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79098565");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("[type=button]")).click();
-        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79128564215.";
+        String expectedText = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
 
         String actualText = driver.findElement(By.cssSelector("[data-test-id= phone].input_invalid .input__sub")).getText().trim();
         assertEquals(expectedText, actualText);
